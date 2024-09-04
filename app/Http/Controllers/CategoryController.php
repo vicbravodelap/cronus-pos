@@ -15,6 +15,8 @@ class CategoryController extends Controller
         $categories = Category::query()
             ->paginate();
 
+        confirmDelete();
+
         return View('categories.index', [
             'categories' => $categories
         ]);
@@ -46,8 +48,10 @@ class CategoryController extends Controller
                 $request->validated()
             );
 
+        toast('Categoría creada correctamente!', 'success');
+
         return redirect()->to(
-            route('categories.edit', ['category' => $category])
+            route('categories.index')
         );
     }
 
@@ -57,14 +61,18 @@ class CategoryController extends Controller
             $request->validated()
         );
 
+        toast('Categoría actualizada correctamente!', 'success');
+
         return redirect()->to(
-            route('categories.edit', ['category' => $category])
+            route('categories.index')
         );
     }
 
     public function destroy(Category $category)
     {
         $category->delete();
+
+        toast('Categoría eliminada correctamente!', 'info');
 
         return redirect()->to(
             route('categories.index')

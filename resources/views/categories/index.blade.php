@@ -27,11 +27,11 @@
                             <td>{{ $category->description }}</td>
                             <td>
                                 <a href="{{ route('categories.edit', $category) }}" class="btn btn-warning">Editar</a>
-                                <form action="{{ route('categories.destroy', $category) }}" method="POST" class="d-inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">Eliminar</button>
-                                </form>
+                                <a
+                                    href="{{ route('categories.destroy', $category->id) }}"
+                                    class="btn btn-danger"
+                                    data-confirm-delete>Delete
+                                </a>
                             </td>
                         </tr>
                     @endforeach
