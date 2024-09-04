@@ -6,7 +6,6 @@ use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
 use Illuminate\View\View;
-use RealRashid\SweetAlert\Facades\Alert;
 
 class CategoryController extends Controller
 {
@@ -52,7 +51,7 @@ class CategoryController extends Controller
         toast('Categoría creada correctamente!', 'success');
 
         return redirect()->to(
-            route('categories.index', ['category' => $category])
+            route('categories.index')
         );
     }
 
@@ -65,7 +64,7 @@ class CategoryController extends Controller
         toast('Categoría actualizada correctamente!', 'success');
 
         return redirect()->to(
-            route('categories.index', ['category' => $category])
+            route('categories.index')
         );
     }
 

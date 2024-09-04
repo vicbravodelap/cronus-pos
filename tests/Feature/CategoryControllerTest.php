@@ -84,7 +84,7 @@ class CategoryControllerTest extends TestCase
         );
 
         $response->assertRedirect(
-            route('categories.edit', ['category' => $category->id])
+            route('categories.index')
         );
 
         $this->assertDatabaseHas('categories', $categoryData);
@@ -111,7 +111,7 @@ class CategoryControllerTest extends TestCase
         $this->assertNotNull($category, 'Category was not created');
 
         $response->assertRedirect(
-            route('categories.edit', ['category' => $category->id])
+            route('categories.index')
         );
 
         $this->assertDatabaseHas('categories', $categoryData);
