@@ -61,4 +61,13 @@ class CategoryController extends Controller
             route('categories.edit', ['category' => $category])
         );
     }
+
+    public function destroy(Category $category)
+    {
+        $category->delete();
+
+        return redirect()->to(
+            route('categories.index')
+        );
+    }
 }

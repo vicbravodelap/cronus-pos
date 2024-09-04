@@ -116,4 +116,25 @@ class CategoryControllerTest extends TestCase
 
         $this->assertDatabaseHas('categories', $categoryData);
     }
+
+    public function testCategoryDestroy(): void
+    {
+        $this->actingAs(
+            User::factory()->create()
+        );
+
+        $category = Category::factory()->create();
+
+        $response = $this->delete(
+            route('categories.destroy', ['category' => $category->id])
+        );
+
+        $response->assertRedirect(
+            route('categories.index')
+        );
+
+        $this->assertSoftDeleted('categories', [
+            'id' => $category->id
+        ]);
+    }
 }
