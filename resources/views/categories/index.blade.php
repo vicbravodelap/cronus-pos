@@ -38,5 +38,9 @@
                 </tbody>
             </table>
         </div>
+
+        <div class="card-footer">
+            {{ $categories->links() }}
+        </div>
     </div>
 @stop
