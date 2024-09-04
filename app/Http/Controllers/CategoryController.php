@@ -6,6 +6,7 @@ use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
 use Illuminate\View\View;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class CategoryController extends Controller
 {
@@ -14,6 +15,8 @@ class CategoryController extends Controller
     {
         $categories = Category::query()
             ->paginate();
+
+        confirmDelete();
 
         return View('categories.index', [
             'categories' => $categories
@@ -46,8 +49,10 @@ class CategoryController extends Controller
                 $request->validated()
             );
 
+        toast('Categoría creada correctamente!', 'success');
+
         return redirect()->to(
-            route('categories.edit', ['category' => $category])
+            route('categories.index', ['category' => $category])
         );
     }
 
@@ -57,14 +62,18 @@ class CategoryController extends Controller
             $request->validated()
         );
 
+        toast('Categoría actualizada correctamente!', 'success');
+
         return redirect()->to(
-            route('categories.edit', ['category' => $category])
+            route('categories.index', ['category' => $category])
         );
     }
 
     public function destroy(Category $category)
     {
         $category->delete();
+
+        toast('Categoría eliminada correctamente!', 'info');
 
         return redirect()->to(
             route('categories.index')
