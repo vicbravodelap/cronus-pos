@@ -317,7 +317,23 @@ return [
                             'icon' => 'fas fa-fw fa-plus',
                         ],
                     ],
-                ]
+                ],
+                [
+                    'text' => 'Productos',
+                    'icon' => 'fas fa-fw fa-boxes',
+                    'submenu' => [
+                        [
+                            'text' => 'Listar',
+                            'url' => 'products',
+                            'icon' => 'fas fa-fw fa-list',
+                        ],
+                        [
+                            'text' => 'Crear',
+                            'url' => 'products/create',
+                            'icon' => 'fas fa-fw fa-plus',
+                        ],
+                    ],
+                ],
             ],
         ]
     ],
@@ -357,6 +373,16 @@ return [
     */
 
     'plugins' => [
+        'BsCustomFileInput' => [
+            'active' => false,
+            'files' => [
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/bs-custom-file-input/bs-custom-file-input.min.js',
+                ],
+            ],
+        ],
         'Datatables' => [
             'active' => false,
             'files' => [
@@ -383,12 +409,12 @@ return [
                 [
                     'type' => 'js',
                     'asset' => false,
-                    'location' => '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js',
+                    'location' => '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js',
                 ],
                 [
                     'type' => 'css',
                     'asset' => false,
-                    'location' => '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.css',
+                    'location' => '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css',
                 ],
             ],
         ],

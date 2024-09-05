@@ -4,13 +4,10 @@ namespace Tests\Feature;
 
 use App\Models\Category;
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class CategoryControllerTest extends TestCase
 {
-    use RefreshDatabase;
-
     public function testCategoryIndex(): void
     {
         $this->get(

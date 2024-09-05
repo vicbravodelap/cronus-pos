@@ -17,26 +17,26 @@ class CategoryController extends Controller
 
         confirmDelete();
 
-        return View('categories.index', [
+        return view('categories.index', [
             'categories' => $categories
         ]);
     }
 
     public function create(): View
     {
-        return View('categories.create');
+        return view('categories.create');
     }
 
     public function show(Category $category)
     {
-        return View('categories.show', [
+        return view('categories.show', [
             'category' => $category
         ]);
     }
 
     public function edit(Category $category)
     {
-        return View('categories.edit', [
+        return view('categories.edit', [
             'category' => $category
         ]);
     }
