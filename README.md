@@ -1,3 +1,5 @@
+[![codecov](https://codecov.io/gh/vicbravodelap/cronus-pos/branch/main/graph/badge.svg?token=VQH7OVTRRA)](https://codecov.io/gh/vicbravodelap/cronus-pos)
+
 # Proyecto POS para Crossfit
 
 Este proyecto es un Sistema de Punto de Venta (POS) desarrollado específicamente para gimnasios de Crossfit. El sistema permite gestionar ventas, inventarios y membresías de manera eficiente, adaptándose a las necesidades particulares de este tipo de establecimientos.
