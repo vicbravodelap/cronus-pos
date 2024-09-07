@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('reorder_level')->default(0);
             $table->integer('max_level')->default(0);
 
+            $table->softDeletes();
             $table->timestamps();
         });
     }

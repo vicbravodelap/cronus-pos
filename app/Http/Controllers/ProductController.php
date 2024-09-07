@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateProductRequest;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Stock;
+use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\View\View;
 
@@ -15,9 +16,16 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): View
+    public function index(Request $request): View
     {
-        $products = Product::with(['category', 'stock'])->paginate();
+        $search = $request->query('search');
+
+        $products = Product::with(['category', 'stock.movements'])
+            ->search($search)
+            ->paginate()
+            ->appends(['search' => $search]);
+
+        confirmDelete();
 
         return view('products.index', [
             'products' => $products
@@ -71,6 +79,8 @@ class ProductController extends Controller
             ]
         );
 
+        toast('Producto creado correctamente!','success');
+
         return redirect()->to(
             route('products.index')
         );
@@ -81,7 +91,12 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        $categories = Category::all();
+
+        return view('products.show', [
+            'product' => $product,
+            'categories' => $categories
+        ]);
     }
 
     /**
@@ -89,7 +104,12 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        $categories = Category::all();
+
+        return view('products.edit', [
+            'product' => $product,
+            'categories' => $categories
+        ]);
     }
 
     /**
@@ -97,7 +117,39 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
-        //
+        $file = $request->file('image');
+
+        if ($file) {
+            $path = $file->store('public/products');
+            $request->merge(['image_path' => $path]);
+        }
+
+        $product->update(
+            $request->only([
+                'name',
+                'description',
+                'category_id',
+                'price',
+                'discount',
+                'sku',
+                'status',
+                'image_path'
+            ])
+        );
+
+        $product->stock->update(
+            $request->only([
+                'quantity',
+                'reorder_level',
+                'max_level'
+            ])
+        );
+
+        toast('Producto actualizado correctamente!','success');
+
+        return redirect()->to(
+            route('products.edit', $product->id)
+        );
     }
 
     /**
@@ -105,6 +157,13 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        $product->stock->delete();
+
+        toast('Producto eliminado correctamente!','success');
+
+        return redirect()->to(
+            route('products.index')
+        );
     }
 }
