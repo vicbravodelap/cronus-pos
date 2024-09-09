@@ -12,6 +12,14 @@ class StockMovement extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $fillable = [
+        'stock_id',
+        'quantity',
+        'date',
+        'type',
+        'reason',
+    ];
+
     public function stock(): BelongsTo
     {
         return $this->belongsTo(Stock::class);

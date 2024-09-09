@@ -8,6 +8,15 @@ use Tests\TestCase;
 
 class CategoryControllerTest extends TestCase
 {
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->actingAs(
+            User::factory()->create()
+        );
+    }
+
     public function testCategoryIndex(): void
     {
         $this->get(

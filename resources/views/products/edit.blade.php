@@ -85,10 +85,13 @@
 
                     <div class="form-group col-md-6">
                         <label for="image">Imagén del producto</label>
-                        <input type="file" class="form-control" name="image" placeholder="Escoge una imagén">
+                        <input type="file" class="form-control" name="image" id="image" placeholder="Escoge una imagén">
                         @error('image')
                         <small class="text-danger">{{ $message }}</small>
                         @enderror
+                        <div class="mt-3">
+                            <img id="imagePreview" src="{{ Storage::url($product->image_path) }}" alt="Imagen del producto" class="img-thumbnail" style="max-width: 200px;">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -145,7 +148,7 @@
             }
 
             function updateSku() {
-                const name = $('#name').val();
+                const name = nameSelector.val();
                 const category = $('#category_id option:selected').text();
 
                 if (category === 'Selecciona una categoría') {
@@ -157,21 +160,14 @@
                 }
             }
 
-            if ($('#name').val() && $('#category_id').val()) {
+            const nameSelector = $('#name');
+
+            if (nameSelector.val() && $('#category_id').val()) {
                 updateSku();
             }
 
-            $('#name, #category_id').on('change', function() {
-                const name = $('#name').val();
-                const category = $('#category_id option:selected').text();
-
-                if (category === 'Selecciona una categoría') {
-                    $('#sku').val('');
-                } else {
-                    const sku = generateSku(name, category);
-                    console.log('Generated SKU:', sku);
-                    $('#sku').val(sku);
-                }
+            nameSelector.add('#category_id').on('change', function() {
+                updateSku();
             });
 
             $('form').on('submit', function() {
@@ -179,6 +175,17 @@
                 if (!sku) {
                     alert('SKU cannot be empty');
                     return false;
+                }
+            });
+
+            $('#image').on('change', function() {
+                const file = this.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        $('#imagePreview').attr('src', e.target.result);
+                    }
+                    reader.readAsDataURL(file);
                 }
             });
         });

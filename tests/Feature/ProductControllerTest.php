@@ -13,6 +13,16 @@ use Tests\TestCase;
 
 class ProductControllerTest extends TestCase
 {
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->actingAs(
+            User::factory()->create()
+        );
+    }
+
     public function testCanIndexProducts(): void
     {
         $this->get(route('products.index'))

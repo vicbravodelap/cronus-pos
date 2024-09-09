@@ -84,9 +84,15 @@
                                         <a class="dropdown-item" href="{{ route('products.destroy', $product->id) }}" data-confirm-delete>
                                             <i class="fas fa-trash-alt"></i> Eliminar
                                         </a>
+                                        <div class="dropdown-divider"></div>
+
                                         <button class="dropdown-item" data-toggle="modal" data-target="#stockModal" data-stock="{{ $product->stock->quantity }}" data-movements="{{ $product->stock->movements }}">
                                             <i class="fas fa-box"></i> Ver Stock
                                         </button>
+
+                                        <a href="{{ route('stock.movements.create', ['stock' => $product->stock]) }}" class="dropdown-item">
+                                            <i class="fas fa-box"></i> Movimiento de stock
+                                        </a>
                                     </div>
                                 </div>
                             </td>
@@ -122,6 +128,7 @@
                             <tr>
                                 <th>Tipo</th>
                                 <th>Cantidad</th>
+                                <th>Razón</th>
                                 <th>Fecha</th>
                             </tr>
                             </thead>
@@ -159,6 +166,7 @@ $(document).ready(function() {
             let listItem = `<tr>
                                 <td>${movementTypeBadge}</td>
                                 <td>${movement.quantity} ${quantityText}</td>
+                                <td>${movement.reason ? movement.reason : 'N/D'}</td>
                                 <td>${movement.created_at}</td>
                             </tr>`;
             movementsList.append(listItem);
