@@ -299,42 +299,25 @@ return [
             'topnav_right' => true,
         ],
         [
-            'text' => 'Productos',
-            'icon' => 'fas fa-fw fa-boxes',
+            'text' => 'Catálogos',
+            'icon' => 'fas fa-fw fa-list',
             'submenu' => [
                 [
                     'text' => 'Categorías',
                     'icon' => 'fas fa-fw fa-layer-group',
-                    'submenu' => [
-                        [
-                            'text' => 'Listar',
-                            'url' => 'categories',
-                            'icon' => 'fas fa-fw fa-list',
-                        ],
-                        [
-                            'text' => 'Crear',
-                            'url' => 'categories/create',
-                            'icon' => 'fas fa-fw fa-plus',
-                        ],
-                    ],
+                    'url' => 'categories'
                 ],
                 [
                     'text' => 'Productos',
                     'icon' => 'fas fa-fw fa-boxes',
-                    'submenu' => [
-                        [
-                            'text' => 'Listar',
-                            'url' => 'products',
-                            'icon' => 'fas fa-fw fa-list',
-                        ],
-                        [
-                            'text' => 'Crear',
-                            'url' => 'products/create',
-                            'icon' => 'fas fa-fw fa-plus',
-                        ],
-                    ],
+                    'url' => 'products'
                 ],
-            ],
+            ]
+        ],
+        [
+            'text' => 'Promociones',
+            'icon' => 'fas fa-fw fa-tags',
+            'url' => 'promotions'
         ]
     ],
 
@@ -409,12 +392,12 @@ return [
                 [
                     'type' => 'js',
                     'asset' => false,
-                    'location' => '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js',
+                    'location' => 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js',
                 ],
                 [
                     'type' => 'css',
                     'asset' => false,
-                    'location' => '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css',
+                    'location' => 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css',
                 ],
             ],
         ],

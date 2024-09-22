@@ -5,15 +5,20 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
+use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class CategoryController extends Controller
 {
 
-    public function index(): View
+    public function index(Request $request): View
     {
+        $search = $request->input('search');
+
         $categories = Category::query()
-            ->paginate();
+            ->search($search)
+            ->paginate()
+            ->appends(['search' => $search]);
 
         confirmDelete();
 

@@ -18,9 +18,12 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->string('code')->unique();
             $table->enum('type', ['percentage', 'fixed'])->default('percentage');
-            $table->decimal('value', 8, 2);
+            $table->json('applicable_models');
+            $table->decimal('value');
             $table->dateTime('start_at');
             $table->dateTime('end_at');
+
+            $table->softDeletes();
 
             $table->timestamps();
         });

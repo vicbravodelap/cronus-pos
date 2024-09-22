@@ -15,4 +15,12 @@ Route::middleware('auth')->group(function () {
     Route::resource('products', App\Http\Controllers\ProductController::class);
     Route::resource('stock.movements', App\Http\Controllers\StockMovementController::class)
         ->only(['create', 'store']);
+
+    Route::resource('promotions', App\Http\Controllers\PromotionController::class);
+
+    Route::post('promotion-assignments', [App\Http\Controllers\PromotionAssignmentController::class, 'store'])
+        ->name('promotions.assignments.store');
+
+    Route::get('promotion-assignments/{promotion}/create', [App\Http\Controllers\PromotionAssignmentController::class, 'create'])
+        ->name('promotions.assignments.create');
 });

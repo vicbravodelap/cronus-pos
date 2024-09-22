@@ -7,12 +7,29 @@
 @stop
 
 @section('content')
+    <div class="mb-3">
+        <a href="{{ route('categories.create') }}" class="btn btn-primary">
+            <i class="fas fa-plus"></i> Crear categoría
+        </a>
+    </div>
     <div class="card">
         <div class="card-header">
-            <a href="{{ route('categories.create') }}" class="btn btn-primary">Crear categoría</a>
+            <h3 class="card-title">Listado de categorías</h3>
+            <div class="card-tools">
+                <form action="{{ route('categories.index') }}" method="GET" class="form-inline">
+                    <div class="input-group input-group-sm">
+                        <input type="text" name="search" class="form-control" placeholder="Buscar categoría" value="{{ request('search') }}">
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-default">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="card-body">
-            <table class="table table-striped">
+        <div class="card-body table-responsive p-0">
+            <table class="table table-hover text-nowrap">
                 <thead>
                     <tr>
                         <th>Nombre</th>
