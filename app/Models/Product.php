@@ -2,17 +2,19 @@
 
 namespace App\Models;
 
+use App\Traits\HasPromotions;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Builder;
 
 class Product extends Model
 {
-    use SoftDeletes, HasFactory;
+    use SoftDeletes, HasFactory, HasPromotions;
 
     protected $fillable = [
         'name',
@@ -33,6 +35,11 @@ class Product extends Model
     public function stock(): HasOne
     {
         return $this->hasOne(Stock::class);
+    }
+
+    public function promotions(): MorphToMany
+    {
+        return $this->morphToMany(Promotion::class, 'promotionable');
     }
 
     public function scopeSearch(Builder $query, ?string $search): Builder

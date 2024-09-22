@@ -7,6 +7,11 @@
 @stop
 
 @section('content')
+    <div class="mb-3">
+        <a href="{{ route('products.create') }}" class="btn btn-primary">
+            <i class="fas fa-plus"></i> Crear producto
+        </a>
+    </div>
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">Listado de productos</h3>
@@ -86,13 +91,17 @@
                                         </a>
                                         <div class="dropdown-divider"></div>
 
-                                        <button class="dropdown-item" data-toggle="modal" data-target="#stockModal" data-stock="{{ $product->stock->quantity }}" data-movements="{{ $product->stock->movements }}">
-                                            <i class="fas fa-box"></i> Ver Stock
-                                        </button>
+                                        @if($product->stock)
+                                            <button class="dropdown-item" data-toggle="modal" data-target="#stockModal" data-stock="{{ $product->stock->quantity }}" data-movements="{{ $product->stock->movements }}">
+                                                <i class="fas fa-box"></i> Ver Stock
+                                            </button>
 
-                                        <a href="{{ route('stock.movements.create', ['stock' => $product->stock]) }}" class="dropdown-item">
-                                            <i class="fas fa-box"></i> Movimiento de stock
-                                        </a>
+                                            <a href="{{ route('stock.movements.create', ['stock' => $product->stock]) }}" class="dropdown-item">
+                                                <i class="fas fa-box"></i> Movimiento de stock
+                                            </a>
+                                        @else
+                                            <span class="dropdown-item text-muted">Sin stock</span>
+                                        @endif
                                     </div>
                                 </div>
                             </td>
