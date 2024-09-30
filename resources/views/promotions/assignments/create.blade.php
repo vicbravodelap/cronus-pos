@@ -24,7 +24,9 @@
                             <select name="{{ class_basename($model) }}_ids[]" id="{{ class_basename($model) }}" multiple class="form-control select2">
                                 <option value="all">Todos</option>
                                 @foreach ($items as $item)
-                                    <option value="{{ $item['id'] }}">{{ $item['name'] }}</option>
+                                    <option value="{{ $item['id'] }}">
+                                        {{ $model != 'App\Models\Membership' ?  $item['name'] : $item['user']['name'] }}
+                                    </option>
                                 @endforeach
                             </select>
                             @error('{{ class_basename($model) }}_ids')
@@ -44,7 +46,7 @@
 @section('js')
     <script>
         $(document).ready(function() {
-            $('#{{ class_basename($model) }}').select2({
+            $('.select2').select2({
                 placeholder: 'Seleccione una o varias opciones',
                 allowClear: true,
             });

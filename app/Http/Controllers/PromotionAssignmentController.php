@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePromotionAssignmentRequest;
+use App\Models\Membership;
 use App\Models\Promotion;
 use Illuminate\View\View;
 
@@ -50,6 +51,10 @@ class PromotionAssignmentController extends Controller
         $modelsData = [];
 
         foreach ($applicableModels as $applicableModel) {
+            if ($applicableModel == Membership::class) {
+                $modelsData[$applicableModel] = Membership::with('user')->get()->toArray();
+                continue;
+            }
             $modelsData[$applicableModel] = $applicableModel::all()->toArray();
         }
 

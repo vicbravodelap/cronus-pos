@@ -318,6 +318,11 @@ return [
             'text' => 'Promociones',
             'icon' => 'fas fa-fw fa-tags',
             'url' => 'promotions'
+        ],
+        [
+            'text' => 'Membresías',
+            'icon' => 'fas fa-fw fa-id-card',
+            'url' => 'memberships'
         ]
     ],
 
@@ -399,6 +404,11 @@ return [
                     'asset' => false,
                     'location' => 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css',
                 ],
+                [
+                    'type' => 'css',
+                    'asset' => false,
+                    'location' => 'https://cdn.jsdelivr.net/npm/select2-bootstrap4-theme@1.0.0/dist/select2-bootstrap4.min.css',
+                ]
             ],
         ],
         'Chartjs' => [

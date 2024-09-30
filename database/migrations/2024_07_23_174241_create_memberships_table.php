@@ -21,6 +21,8 @@ return new class extends Migration
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->foreignIdFor(\App\Models\Promotion::class)->nullable();
 
+            $table->softDeletes();
+
             $table->timestamps();
         });
     }

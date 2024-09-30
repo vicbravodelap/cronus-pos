@@ -18,6 +18,8 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('promotions', App\Http\Controllers\PromotionController::class);
 
+    Route::resource('memberships', App\Http\Controllers\MembershipController::class);
+
     Route::post('promotion-assignments', [App\Http\Controllers\PromotionAssignmentController::class, 'store'])
         ->name('promotions.assignments.store');
 

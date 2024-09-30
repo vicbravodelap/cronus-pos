@@ -10,7 +10,7 @@ use Tests\TestCase;
 
 class PromotionAssignmentControllerTest extends TestCase
 {
-    public function testCanCreatePromotionAssignment()
+    public function testCanCreatePromotionAssignmentWithProduct()
     {
         $this->actingAs(User::factory()->create());
 
@@ -25,6 +25,21 @@ class PromotionAssignmentControllerTest extends TestCase
             'Product',
             'Guardar'
         ]);
+
+        $response->assertStatus(200);
+    }
+
+    public function testCreatePromotionAssignmentWithMembershipAndUser(): void
+    {
+        $this->actingAs(User::factory()->create());
+
+        Membership::factory(10)->create();
+
+        $promotion = Promotion::factory()->create([
+            'applicable_models' => [Membership::class]
+        ]);
+
+        $response = $this->get(route('promotions.assignments.create', $promotion));
 
         $response->assertStatus(200);
     }

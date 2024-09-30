@@ -14,9 +14,11 @@ class MembershipFactory extends Factory
 
     public function definition(): array
     {
+        $currentDate = Carbon::now();
+
         return [
-            'start_at' => Carbon::now(),
-            'end_at' => Carbon::now()->addMonth(),
+            'start_at' => $currentDate,
+            'end_at' => $currentDate->addMonth(),
             'status' => $this->faker->randomElement(['active', 'inactive']),
             'promotion_id' => Promotion::factory(),
             'created_at' => Carbon::now(),
