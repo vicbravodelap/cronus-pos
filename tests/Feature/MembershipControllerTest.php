@@ -167,7 +167,7 @@ class MembershipControllerTest extends TestCase
         ]);
 
         $this->assertEquals(
-            29,
+            30,
             $membership->daysLeft
         );
 
