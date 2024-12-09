@@ -22,7 +22,7 @@ class MembershipFactory extends Factory
             'status' => $this->faker->randomElement(['active', 'inactive']),
             'promotion_id' => Promotion::factory(),
             'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
+            'updated_at' => Carbon::now()->addMonth(),
             'user_id' => User::factory(),
         ];
     }

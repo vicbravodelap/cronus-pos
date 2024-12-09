@@ -361,6 +361,16 @@ return [
     */
 
     'plugins' => [
+        'Html5QRCode' =>[
+            'active' => true,
+            'files' => [
+                [
+                    'type' => 'js',
+                    'asset' => false,
+                    'location' => 'https://unpkg.com/html5-qrcode',
+                ],
+            ],
+        ],
         'BsCustomFileInput' => [
             'active' => false,
             'files' => [

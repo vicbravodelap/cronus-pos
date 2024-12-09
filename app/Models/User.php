@@ -56,4 +56,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(SaleOrder::class);
     }
+
+    public function attendanceToken(): HasOne
+    {
+        return $this->hasOne(AttendanceToken::class);
+    }
+
+    public function memberAssistances(): HasMany
+    {
+        return $this->hasMany(MemberAssistance::class);
+    }
 }
