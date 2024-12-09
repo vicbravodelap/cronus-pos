@@ -30,10 +30,10 @@ class Membership extends Model
     public function getDaysLeftAttribute(): int
     {
         $endAt = Carbon::parse($this->end_at);
-        $now = Carbon::now();
+        $startAt = Carbon::parse($this->start_at);
 
-        if ($endAt->greaterThan($now)) {
-            return (int) $now->diffInDays($endAt);
+        if ($endAt->greaterThan($startAt)) {
+            return (int) $startAt->diffInDays($endAt);
         }
 
         return 0;
