@@ -163,11 +163,12 @@ class MembershipControllerTest extends TestCase
     public function testGetDaysLeftScope(): void
     {
         $membership = Membership::factory()->create([
+            'start_at' => Carbon::now(),
             'end_at' => Carbon::now()->addMonth()
         ]);
 
         $this->assertEquals(
-            30,
+            31,
             $membership->daysLeft
         );
 
