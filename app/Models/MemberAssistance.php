@@ -8,8 +8,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class MemberAssistance extends Model
 {
-    public function membership(): BelongsTo
+    protected $fillable = [
+        'user_id'
+    ];
+
+    public function user(): BelongsTo
     {
-        return $this->belongsTo(Membership::class);
+        return $this->belongsTo(User::class);
     }
 }

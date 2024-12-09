@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('member_assistances', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(\App\Models\Membership::class);
+            $table->foreignIdFor(\App\Models\User::class);
             $table->timestamps();
         });
     }

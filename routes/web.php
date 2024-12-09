@@ -26,3 +26,6 @@ Route::middleware('auth')->group(function () {
     Route::get('promotion-assignments/{promotion}/create', [App\Http\Controllers\PromotionAssignmentController::class, 'create'])
         ->name('promotions.assignments.create');
 });
+
+Route::resource('member-assistance', App\Http\Controllers\MemberAssistanceController::class)
+    ->only(['index', 'store']);
